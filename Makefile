@@ -22,7 +22,7 @@ $(info OBJS : $(OBJS))
 BINS = $(patsubst $(OBJ_DIR)/%.o,$(BIN_DIR)/%,$(OBJS))
 $(info BINS : $(BINS))
 
-all: $(OBJ_DIR) $(LIB_DIR) $(BIN_DIR)
+all: $(BINS) $(OBJ_DIR) $(LIB_DIR) $(BIN_DIR) 
 
 $(BIN_DIR)/%: $(OBJ_DIR)/%.o 
 	$(CC) $(CFLAGS) $(LDFLAGS) -I$(INC_DIR) -o $@ $^ 
