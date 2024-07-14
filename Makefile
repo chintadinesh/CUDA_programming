@@ -11,7 +11,7 @@ SRCS = $(wildcard $(SRC_DIR)/*.cu)
 $(info SRCS : $(SRCS))
 
 APPS = $(wildcard $(APP_DIR)/*.cu) 
-$(info APP_DIR = $(APP_DIR); APPS : $(APPS))
+$(info APPS : $(APPS))
 
 LIBS = $(patsubst $(SRC_DIR)/%.cu,$(LIB_DIR)/%.o,$(SRCS))
 $(info LIBS : $(LIBS))
@@ -24,14 +24,15 @@ $(info BINS : $(BINS))
 
 all: $(BINS) $(OBJ_DIR) $(LIB_DIR) $(BIN_DIR) 
 
-$(BIN_DIR)/%: $(OBJ_DIR)/%.o 
+
+$(BIN_DIR)/%: $(OBJ_DIR)/%.o $(LIBS) 
 	$(CC) $(CFLAGS) $(LDFLAGS) -I$(INC_DIR) -o $@ $^ 
 
 $(LIB_DIR)/%.o: $(SRC_DIR)/%.cu 
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c -o $@ $<
 
 $(OBJ_DIR)/%.o: $(APP_DIR)/%.cu 
-	$(CC) $(CFLAGS) -I$(SINC_DIR) -I$(INC_DIR) -c -o $@ $<
+	$(CC) $(CFLAGS) -I$(INC_DIR) -c -o $@ $<
 
 $(LIB_DIR):
 	mkdir $(LIB_DIR)

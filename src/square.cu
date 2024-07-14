@@ -2,11 +2,13 @@
 #include <cassert>
 #include <iostream>
 
+#include "square.hpp"
+
 __global__ void square(float *d_out, float *d_in) {
   d_out[threadIdx.x] = d_in[threadIdx.x] * d_in[threadIdx.x];
 }
 
-int main() {
+void square_test(){
   constexpr int ARRAY_SIZE = 64;
   constexpr int ARRAY_BYTES = ARRAY_SIZE * sizeof(float);
 
@@ -33,6 +35,5 @@ int main() {
 
   // verify the results
   for(int i = 0; i < ARRAY_SIZE; i++) assert(h_out[i] == h_in[i] * h_in[i]);
-  std::cout << "TEST PASSED!\n";
-
-  return 0; }
+  std::cout << "Square TEST PASSED!\n";
+}
