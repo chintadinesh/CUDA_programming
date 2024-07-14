@@ -1,9 +1,9 @@
-SRC_DIR = "src"
-OBJ_DIR = "obj"
-LIB_DIR = "lib"
-BIN_DIR = "bin"
-INC_DIR = "inc"
-APP_DIR = "app"
+SRC_DIR = src
+OBJ_DIR = obj
+LIB_DIR = lib
+BIN_DIR = bin
+INC_DIR = inc
+APP_DIR = app
 
 CC = nvcc
 
@@ -11,7 +11,7 @@ SRCS = $(wildcard $(SRC_DIR)/*.cu)
 $(info SRCS : $(SRCS))
 
 APPS = $(wildcard $(APP_DIR)/*.cu) 
-$(info APPS : $(APPS))
+$(info APP_DIR = $(APP_DIR); APPS : $(APPS))
 
 LIBS = $(patsubst $(SRC_DIR)/%.cu,$(LIB_DIR)/%.o,$(SRCS))
 $(info LIBS : $(LIBS))
